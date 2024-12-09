@@ -1,10 +1,20 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-
-  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-  {{ $dateHuman := .Date | time.Format ":date_long" }}
-  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
-
-  {{ .Content }}
-  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+<article class="w3-container">
+    <h1>{{ .Title }}</h1>
+    <p><small>{{ .Date.Format "Jan 2, 2006" }}</small></p>
+    <div>{{ .Content }}</div>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+            this.page.url = '{{ .Permalink }}';
+            this.page.identifier = '{{ .File.UniqueID }}';
+        };
+        (function() {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://EXAMPLE.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+</article>
 {{ end }}

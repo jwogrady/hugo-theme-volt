@@ -1,8 +1,14 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
-  {{ range .Pages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    {{ .Summary }}
-  {{ end }}
+<h2>Recent Posts</h2>
+<div class="w3-row-padding">
+    {{ range .Pages }}
+    <div class="w3-card-4 w3-margin-bottom">
+        <div class="w3-container">
+            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <p>{{ .Date.Format "Jan 2, 2006" }}</p>
+            <p>{{ .Summary }}</p>
+        </div>
+    </div>
+    {{ end }}
+</div>
 {{ end }}

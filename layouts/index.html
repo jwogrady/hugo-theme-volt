@@ -1,0 +1,26 @@
+{{ define "main" }}
+<h2>Recent Blog Posts</h2>
+<div class="w3-row-padding">
+    {{ range first 5 (where .Site.RegularPages "Section" "blog") }}
+    <div class="w3-third w3-card-4 w3-margin-bottom">
+        <div class="w3-container">
+            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <p>{{ .Date.Format "Jan 2, 2006" }}</p>
+            <p>{{ .Summary }}</p>
+        </div>
+    </div>
+    {{ end }}
+</div>
+<h2>Project Updates</h2>
+<div class="w3-row-padding">
+    {{ range first 5 (where .Site.RegularPages "Section" "projects") }}
+    <div class="w3-third w3-card-4 w3-margin-bottom">
+        <div class="w3-container">
+            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <p>{{ .Date.Format "Jan 2, 2006" }}</p>
+            <p>{{ .Summary }}</p>
+        </div>
+    </div>
+    {{ end }}
+</div>
+{{ end }}
